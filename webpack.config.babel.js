@@ -7,8 +7,7 @@ module.exports = {
   mode: "development",
   context: path.join(__dirname, "src"),
   entry: {
-    app: "./index.js",
-    worker: "./worker.js"
+    app: "./index.js"
   },
   output: {
     filename: "[name].bundle.js",
@@ -16,7 +15,6 @@ module.exports = {
   },
   devtool: "inline-source-map",
   devServer: {
-    hot: true,
     contentBase: path.join(__dirname, "dist"),
     compress: true
   },
@@ -28,7 +26,18 @@ module.exports = {
       },
       {
         test: /\.worker\.js$/,
-        use: { loader: "worker-loader" }
+        use: ["worker-loader", "babel-loader"],
+        include: [path.join(__dirname, "src/workers")]
+      },
+      {
+        test: /\.m?js$/,
+        exclude: /(node_modules|bower_components)/,
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: ["@babel/preset-env"]
+          }
+        }
       }
     ]
   },

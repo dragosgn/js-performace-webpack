@@ -1,32 +1,17 @@
-import Worker from "./worker.js";
-import "./style.css";
+import Worker from "../workers/worker.js";
 
-export default () => {
-  const first = document.querySelector("#number1");
-  const second = document.querySelector("#number2");
-  const result = document.querySelector(".result");
+const runWorker = async () => {
+  const worker = new Worker();
+  const message = await new Promise((resolve, reject) => {
+    worker.addEventListener("message", event => resolve(event.data), false);
+    worker.addEventListener("error", reject, false);
+  });
+  return message;
+};
 
-  console.log(window.Worker && "there is a worker");
+export default async () => {
+  // This will have the value 'Done' from the worker's postMessage()
+  const workerMessage = await runWorker();
 
-  if (window.Worker) {
-    const worker = new Worker();
-
-    first.onchange = function() {
-      worker.postMessage([first.value, second.value]);
-      console.log("Message posted to worker");
-    };
-
-    second.onchange = function() {
-      worker.postMessage([first.value, second.value]);
-      console.log("Message posted to worker");
-    };
-
-    worker.onmessage = function(e) {
-      console.log(e);
-      result.textContent = e.data;
-      console.log("Message received from worker");
-    };
-  } else {
-    console.log("Your browser doesn't support web workers.");
-  }
+  console.log(workerMessage);
 };
