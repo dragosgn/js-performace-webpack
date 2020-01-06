@@ -1,6 +1,7 @@
 const webpack = require("webpack");
 const { resolve } = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
   context: resolve(__dirname, "src"),
@@ -17,6 +18,7 @@ module.exports = {
     historyApiFallback: true
   },
   plugins: [
+    new CleanWebpackPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       inject: true,
