@@ -1,10 +1,9 @@
-const webpack = require("webpack");
+const { HotModuleReplacementPlugin } = require("webpack");
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
-  mode: "development",
   context: path.join(__dirname, "src"),
   entry: {
     app: "./index.js"
@@ -21,6 +20,13 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.m?js$/,
+        exclude: /(node_modules|bower_components)/,
+        use: {
+          loader: "babel-loader"
+        }
+      },
+      {
         test: /\.css$/,
         use: ["style-loader", "css-loader"]
       },
@@ -28,20 +34,16 @@ module.exports = {
         test: /\.worker\.js$/,
         use: ["worker-loader", "babel-loader"],
         include: [path.join(__dirname, "src/workers")]
-      },
-      {
-        test: /\.m?js$/,
-        exclude: /(node_modules|bower_components)/,
-        use: ["babel-loader"]
       }
     ]
   },
   plugins: [
-    new CleanWebpackPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
+    new HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       inject: true,
+      filename: "./index.html",
       template: path.join(__dirname, "src/index.html")
-    })
+    }),
+    new CleanWebpackPlugin()
   ]
 };
