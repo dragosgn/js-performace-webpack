@@ -10,7 +10,7 @@ module.exports = {
     worker: "./worker.js"
   },
   output: {
-    filename: "[name].bundle.js",
+    filename: "[name].js",
     path: resolve(__dirname, "dist")
   },
   devServer: {
