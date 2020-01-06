@@ -1,22 +1,24 @@
 const webpack = require("webpack");
-const { resolve } = require("path");
+const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
-  context: resolve(__dirname, "src"),
+  mode: "development",
+  context: path.join(__dirname, "src"),
   entry: {
     app: "./index.js",
     worker: "./worker.js"
   },
   output: {
-    filename: "[name].js",
-    path: resolve(__dirname, "dist")
+    filename: "[name].bundle.js",
+    path: path.join(__dirname, "dist")
   },
+  devtool: "inline-source-map",
   devServer: {
     hot: true,
-    publicPath: "/",
-    historyApiFallback: true
+    contentBase: path.join(__dirname, "dist"),
+    compress: true
   },
   module: {
     rules: [
@@ -35,7 +37,7 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       inject: true,
-      template: resolve(__dirname, "src/index.html")
+      template: path.join(__dirname, "src/index.html")
     })
   ]
 };
