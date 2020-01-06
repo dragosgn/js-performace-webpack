@@ -1,16 +1,27 @@
-var myWorker = new Worker("worker.js");
+import "./style.css";
 
-first.onchange = function() {
-  myWorker.postMessage([12, 34]);
-  console.log("Message posted to worker");
-};
+const first = document.querySelector("#number1");
+const second = document.querySelector("#number2");
 
-second.onchange = function() {
-  myWorker.postMessage([32, "hello world!"]);
-  console.log("Message posted to worker");
-};
+const result = document.querySelector(".result");
 
-myWorker.onmessage = function(e) {
-  result.textContent = e.data;
-  console.log("Message received from worker");
-};
+if (window.Worker) {
+  const myWorker = new Worker("worker.js");
+
+  first.onchange = function() {
+    myWorker.postMessage([first.value, second.value]);
+    console.log("Message posted to worker");
+  };
+
+  second.onchange = function() {
+    myWorker.postMessage([first.value, second.value]);
+    console.log("Message posted to worker");
+  };
+
+  myWorker.onmessage = function(e) {
+    result.textContent = e.data;
+    console.log("Message received from worker");
+  };
+} else {
+  console.log("Your browser doesn't support web workers.");
+}
