@@ -8,7 +8,7 @@
     "watch": "webpack -w",
     "compress": "webpack -p",
     "dev": "webpack-dev-server --open",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "depcheck": "depcheck"
   },
   "keywords": [],
@@ -30,6 +30,7 @@
     "css-loader": "^3.4.1",
     "depcheck": "^0.9.1",
     "html-webpack-plugin": "^3.2.0",
+    "jest": "^24.9.0",
     "prettier": "^1.19.1",
     "react-hot-loader": "^4.12.18",
     "style-loader": "^1.1.2",
