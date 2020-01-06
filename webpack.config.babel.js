@@ -15,16 +15,15 @@ module.exports = {
   devtool: "inline-source-map",
   devServer: {
     contentBase: path.join(__dirname, "dist"),
-    compress: true
+    compress: true,
+    hot: true
   },
   module: {
     rules: [
       {
-        test: /\.m?js$/,
-        exclude: /(node_modules|bower_components)/,
-        use: {
-          loader: "babel-loader"
-        }
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: ["babel-loader"]
       },
       {
         test: /\.css$/,
@@ -36,6 +35,9 @@ module.exports = {
         include: [path.join(__dirname, "src/workers")]
       }
     ]
+  },
+  resolve: {
+    extensions: ["*", ".js", ".jsx"]
   },
   plugins: [
     new HotModuleReplacementPlugin(),

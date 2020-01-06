@@ -1,3 +1,6 @@
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
 import Worker from "../workers/worker.js";
 
 const runWorker = async () => {
@@ -8,10 +11,7 @@ const runWorker = async () => {
   });
   return message;
 };
+const title = "React with Webpack and Babel";
 
-export default async () => {
-  // This will have the value 'Done' from the worker's postMessage()
-  const workerMessage = await runWorker();
-
-  console.log(workerMessage);
-};
+ReactDOM.render(<App title={title} />, document.getElementById("app"));
+module.hot.accept();
