@@ -1,42 +1,20 @@
-html {
-  background-color: #7d2663;
-  font-family: sans-serif;
+.moving-box {
+  display: inline-block;
+  margin: 1vw 5vw;
+  width: 10vw;
+  height: 10vw;
+  background-image: linear-gradient(rgb(228, 15, 15), silver);
 }
 
-h1 {
-  margin: 0;
-  font-size: 15vw;
-  letter-spacing: -0.2rem;
-  position: absolute;
-  top: 0;
-  z-index: -1;
+#container.started > .moving-box {
+  animation: animate-box 1s linear infinite alternate;
 }
 
-p {
-  margin: 0;
-}
-
-.controls {
-  padding: 4vw;
-  width: 75%;
-  margin: 10vw auto;
-  background-color: rgba(255, 255, 255, 0.7);
-  border: 5px solid black;
-  opacity: 0.3;
-  transition: 1s all;
-}
-
-.controls:hover,
-.controls:focus {
-  opacity: 1;
-}
-
-.controls label,
-.controls p,
-.controls input {
-  font-size: 3vw;
-}
-
-.controls div {
-  padding-bottom: 1rem;
+@keyframes animate-box {
+  from {
+    margin-left: 1vw;
+  }
+  to {
+    margin-left: 80vw;
+  }
 }

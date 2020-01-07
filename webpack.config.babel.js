@@ -31,13 +31,13 @@ module.exports = {
         include: [path.join(__dirname, 'src/workers')],
       },
       {
-        test: /\.css$/,
+        test: /\.css$/i,
         use: ['style-loader', 'css-loader'],
       },
     ],
   },
   resolve: {
-    extensions: ['*', '.js', '.jsx'],
+    extensions: ['*', '.js', '.jsx', '.css'],
   },
   plugins: [
     new HotModuleReplacementPlugin(),

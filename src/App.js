@@ -29,11 +29,16 @@ const App = ({ title }) => {
   return (
     <div>
       <div>{title}</div>
+      <p>Using web worker</p>
       <p>
         {data.workerCalculation
           ? data.workerCalculation
           : 'Worker is working....'}
       </p>
+      <div id="container" className="started">
+        <div className="moving-box"></div>
+      </div>
+      <p>Using animation frame</p>
     </div>
   );
 };
