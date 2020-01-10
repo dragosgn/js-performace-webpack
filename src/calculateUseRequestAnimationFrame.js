@@ -6,7 +6,7 @@ function calculatePrimesWithAnimFrame(iterations, multiplier) {
     // finishing condition
     if (index == iterations) {
       console.log(primes);
-      return;
+      return primes;
     }
     // test this number
     var candidate = index * (multiplier * Math.random());
@@ -29,7 +29,6 @@ function calculatePrimesWithAnimFrame(iterations, multiplier) {
   var primes = [];
   var testFunction = testCandidate.bind(this, 0);
   window.requestAnimationFrame(testFunction);
-  return primes;
 }
 
 export default () => {
