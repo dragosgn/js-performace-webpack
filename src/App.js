@@ -33,10 +33,28 @@ const App = ({ title }) => {
   };
 
   return (
-    <div>
-      <div>{title}</div>
-      <button onClick={onUseMainThread}>Use Main Thread</button>
-      <button onClick={onUseWebWorker}>Use web worker</button>
+    <div className="container">
+      <h1>{title}</h1>
+      <div className="row">
+        <div className="col">
+          <button
+            type="button"
+            className="btn btn-primary"
+            onClick={onUseMainThread}
+          >
+            Use Main Thread
+          </button>
+        </div>
+        <div className="col">
+          <button
+            type="button"
+            className="btn btn-primary"
+            onClick={onUseWebWorker}
+          >
+            Use Web Worker
+          </button>
+        </div>
+      </div>
 
       <div id="container" className="started">
         <div className="moving-box"></div>
