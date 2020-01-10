@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
+
 import Worker from './workers/calculation.worker.js';
+import calculate from './calculate';
 
 const runWorker = async () => {
   const worker = new Worker();
@@ -16,29 +18,31 @@ const runWorker = async () => {
 };
 
 const App = ({ title }) => {
-  const [data, setData] = useState({ workerCalculation: null });
+  const [data, setData] = useState({ primes: null });
 
-  useEffect(() => {
-    const calculate = async () => {
-      const result = await runWorker();
-      setData({ workerCalculation: result });
-    };
-    calculate();
-  }, []);
+  const onUseWebWorker = async () => {
+    const result = await runWorker();
+    setData({ primes: result });
+  };
+
+  const onUseMainThread = e => {
+    e.preventDefault();
+    const result = calculate();
+    console.log('this is the result', result);
+    setData({ primes: result });
+  };
 
   return (
     <div>
       <div>{title}</div>
-      <p>Using web worker</p>
-      <p>
-        {data.workerCalculation
-          ? data.workerCalculation
-          : 'Worker is working....'}
-      </p>
+      <button onClick={onUseMainThread}>Use Main Thread</button>
+      <button onClick={onUseWebWorker}>Use web worker</button>
+
       <div id="container" className="started">
         <div className="moving-box"></div>
       </div>
-      <p>Using animation frame</p>
+      {data.primes &&
+        data.primes.map(prime => <p key={prime}>{prime}</p>)}
     </div>
   );
 };

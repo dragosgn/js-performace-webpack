@@ -21,6 +21,5 @@ function calculatePrimes(iterations, multiplier) {
 }
 
 export default () => {
-  var primes = calculatePrimes(iterations, multiplier);
-  console.log(primes);
+  return calculatePrimes(iterations, multiplier);
 };

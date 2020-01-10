@@ -1,4 +1,4 @@
 import calculate from '../calculate';
 
-calculate();
-self.postMessage('Done!');
+const primes = calculate();
+self.postMessage(primes);
