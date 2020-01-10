@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import Worker from './workers/calculation.worker.js';
 import calculate from './calculate';
+import calculateUseRequestAnimationFrame from './calculateUseRequestAnimationFrame';
 
 const runWorker = async () => {
   const worker = new Worker();
@@ -25,9 +26,16 @@ const App = ({ title }) => {
     setData({ primes: result });
   };
 
-  const onUseMainThread = e => {
+  const onUseMainThread = async e => {
     e.preventDefault();
-    const result = calculate();
+    const result = await calculate();
+    console.log('this is the result', result);
+    setData({ primes: result });
+  };
+
+  const onUseRequestAnimationFrame = async e => {
+    e.preventDefault();
+    const result = await calculateUseRequestAnimationFrame();
     console.log('this is the result', result);
     setData({ primes: result });
   };
@@ -52,6 +60,15 @@ const App = ({ title }) => {
             onClick={onUseWebWorker}
           >
             Use Web Worker
+          </button>
+        </div>
+        <div className="col">
+          <button
+            type="button"
+            className="btn btn-primary"
+            onClick={onUseRequestAnimationFrame}
+          >
+            Request Anim Frame
           </button>
         </div>
       </div>
