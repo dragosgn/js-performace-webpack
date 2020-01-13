@@ -9,4 +9,10 @@ Some ways to tackle this are:
 
 Demo: https://dragosgn.github.io/js-performace-webpack/
 
-Heavily inspired on: https://developer.mozilla.org/en-US/docs/Tools/Performance/Scenarios/Intensive_JavaScript
+
+
+
+Further readings and sources:
+- https://developer.mozilla.org/en-US/docs/Tools/Performance/Scenarios/Intensive_JavaScript
+- https://hacks.mozilla.org/2016/11/cooperative-scheduling-with-requestidlecallback/
+- https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Performance_best_practices_for_Firefox_fe_engineers
