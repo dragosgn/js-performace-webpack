@@ -3,8 +3,8 @@ Js client performance when running intensive tasks can become a headache due to 
 
 Some ways to tackle this are:
 - web workers
-- using requestAnimationFrame
-- using requestIdleCallback
+- requestAnimationFrame
+- requestIdleCallback
 
 
 Demo: https://dragosgn.github.io/js-performace-webpack/
