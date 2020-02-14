@@ -7,7 +7,7 @@ Some ways to tackle this are:
 - requestIdleCallback
 
 
-Demo: https://dragosgn.github.io/js-performace-webpack/
+Demo: https://js-perf-example.netlify.com/
 
 
 
