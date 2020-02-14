@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 import Worker from './workers/calculation.worker.js';
 import calculate from './calculate';
 import calculateUseRequestAnimationFrame from './calculateUseRequestAnimationFrame';
+import 'bulma/css/bulma.css';
 
 const runWorker = async () => {
   const worker = new Worker();
