@@ -1,9 +1,10 @@
 .moving-box {
   display: inline-block;
-  margin: 1vw 5vw;
-  width: 10vw;
-  height: 10vw;
-  background-image: linear-gradient(rgb(228, 15, 15), silver);
+  margin-top: 4rem;
+  padding: 4rem;
+  background-color: papayawhip;
+  color: palevioletred;
+  padding: 4em;
 }
 
 #container.started > .moving-box {
@@ -12,9 +13,9 @@
 
 @keyframes animate-box {
   from {
-    margin-left: 1vw;
+    margin-left: 1rem;
   }
   to {
-    margin-left: 80vw;
+    margin-left: 20rem;
   }
 }
